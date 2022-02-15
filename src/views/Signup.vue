@@ -14,6 +14,7 @@ export default {
         .post("/users", this.newUserParams)
         .then((response) => {
           console.log(response.data);
+          localStorage.setItem("flashMessage", "You've created your account.");
           this.$router.push("/login");
         })
         .catch((error) => {
