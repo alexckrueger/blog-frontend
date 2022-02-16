@@ -29,8 +29,17 @@ export default {
       <div>
         What is yours?
         <input type="text" v-model="favoriteLetter" />
-        <button v-on:click="insertFavoriteLetter">Enter Favorite Letter</button>
-        <p v-if="favoriteLetterResponse">{{ favoriteLetterResponse }}</p>
+        <button v-if="!favoriteLetterResponse" v-on:click="insertFavoriteLetter">Enter Favorite Letter</button>
+        <transition-group
+          appear
+          enter-active-class="animate__animated animate__bounceInDown"
+          leave-active-class="animate__animated animate__bounceOutUp"
+        >
+          <p v-if="favoriteLetterResponse">{{ favoriteLetterResponse }}</p>
+        </transition-group>
+        <button v-if="favoriteLetterResponse" v-on:click="favoriteLetterResponse = ''">
+          Wait, I change my mind...
+        </button>
       </div>
     </div>
   </div>

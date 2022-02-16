@@ -43,7 +43,7 @@ export default {
     },
     titleFilter: function () {
       return this.posts.filter((post) => {
-        return post.title.toLowerCase().includes(this.nameFilter);
+        return post.title.toLowerCase().includes(this.nameFilter.toLowerCase());
       });
     },
   },
@@ -53,15 +53,34 @@ export default {
 <template>
   <div class="posts">
     <button v-on:click="doNotClick()">{{ buttonText[buttonIndex] }}</button>
-    <p>
-      Search:
-      <input type="text" v-model="nameFilter" />
-    </p>
-    <div v-for="post in titleFilter()" v-bind:key="post.id">
-      <h2>{{ post.title }}</h2>
-      <small>Created {{ relativeTime(post.created_at) }}</small>
-      <br />
-      <router-link :to="`/posts/${post.id}`"><img :src="post.image" :alt="post.title" /></router-link>
+    <div id="search">
+      <p>
+        Search:
+        <input type="text" v-model="nameFilter" list="postTitles" />
+      </p>
+      <datalist id="postTitles">
+        <option v-for="post in posts" v-bind:key="post.id">{{ post.title }}</option>
+      </datalist>
     </div>
+    <transition-group
+      appear
+      enter-active-class="animate__animated animate__zoomInDown"
+      leave-active-class="animate__animated animate__zoomOutUp"
+    >
+      <div v-for="post in titleFilter()" v-bind:key="post.id">
+        <h2>{{ post.title }}</h2>
+        <small>Created {{ relativeTime(post.created_at) }}</small>
+        <br />
+        <router-link :to="`/posts/${post.id}`"><img :src="post.image" :alt="post.title" /></router-link>
+      </div>
+    </transition-group>
   </div>
 </template>
+
+<style>
+#search {
+  color: purple;
+  font-size: larger;
+  font-weight: bold;
+}
+</style>
