@@ -17,21 +17,44 @@ export default {
 </script>
 
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link>
-    |
-    <router-link to="/about">About</router-link>
-    |
-    <router-link v-if="!isLoggedIn" to="/signup">Signup</router-link>
-    |
-    <router-link v-if="!isLoggedIn" to="/login">Login</router-link>
-    |
-    <router-link v-if="isLoggedIn" to="/logout">Logout</router-link>
-    |
-    <router-link to="/posts">Posts</router-link>
-    |
-    <router-link v-if="isLoggedIn" to="/posts/new">New Post</router-link>
-  </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <router-link class="navbar-brand" to="/">Blog Yeeeee</router-link>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <router-link class="nav-link active" to="/about">About</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link v-if="!isLoggedIn" to="/signup" class="nav-link">Signup</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link v-if="!isLoggedIn" to="/login" class="nav-link">Login</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link v-if="isLoggedIn" to="/logout" class="nav-link">Logout</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/posts" class="nav-link">Posts</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link v-if="isLoggedIn" to="/posts/new" class="nav-link">New Post</router-link>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
   <div v-if="flashMessage">
     {{ flashMessage }}
     <button v-on:click="flashMessage = ''">Dismiss</button>
@@ -40,26 +63,7 @@ export default {
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  background-color: lightblue;
-}
-
-#nav {
-  padding: 30px;
-  background-color: lightblue;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #7e088d;
+body {
+  background-image: url("../public/img/beanstalk.png");
 }
 </style>

@@ -9,6 +9,8 @@ import Posts from "../views/PostsIndex.vue";
 import PostsNew from "../views/PostsNew.vue";
 import PostsShow from "../views/PostsShow.vue";
 import PostsEdit from "../views/PostsEdit.vue";
+import BootstrapPosts from "../views/BootstrapPosts.vue";
+import BootstrapPostsNew from "../views/BootstrapPostsNew.vue";
 
 const routes = [
   {
@@ -60,6 +62,16 @@ const routes = [
     path: "/posts/:id/edit",
     name: "PostsEdit",
     component: PostsEdit,
+  },
+  {
+    path: "/bootstrap-posts",
+    name: "BootstrapPosts",
+    component: BootstrapPosts,
+  },
+  {
+    path: "/bootstrap-posts/new",
+    name: "BootstrapPostsNew",
+    component: BootstrapPostsNew,
   },
 ];
 
