@@ -23,23 +23,25 @@ export default {
 
 <template>
   <div class="home">
-    <h1>{{ message }}</h1>
-    <div>
-      <p>My favorite letter is ~</p>
+    <div class="container-lg">
+      <h1>{{ message }}</h1>
       <div>
-        What is yours?
-        <input type="text" v-model="favoriteLetter" />
-        <button v-if="!favoriteLetterResponse" v-on:click="insertFavoriteLetter">Enter Favorite Letter</button>
-        <transition-group
-          appear
-          enter-active-class="animate__animated animate__bounceInDown"
-          leave-active-class="animate__animated animate__bounceOutUp"
-        >
-          <p v-if="favoriteLetterResponse">{{ favoriteLetterResponse }}</p>
-        </transition-group>
-        <button v-if="favoriteLetterResponse" v-on:click="favoriteLetterResponse = ''">
-          Wait, I change my mind...
-        </button>
+        <p>My favorite letter is ~</p>
+        <div>
+          What is yours?
+          <input type="text" v-model="favoriteLetter" />
+          <button v-if="!favoriteLetterResponse" v-on:click="insertFavoriteLetter">Enter Favorite Letter</button>
+          <transition-group
+            appear
+            enter-active-class="animate__animated animate__bounceInDown"
+            leave-active-class="animate__animated animate__bounceOutUp"
+          >
+            <p v-if="favoriteLetterResponse">{{ favoriteLetterResponse }}</p>
+          </transition-group>
+          <button v-if="favoriteLetterResponse" v-on:click="favoriteLetterResponse = ''">
+            Wait, I change my mind...
+          </button>
+        </div>
       </div>
     </div>
   </div>

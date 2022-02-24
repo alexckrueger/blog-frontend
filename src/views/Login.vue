@@ -19,7 +19,7 @@ export default {
           this.$router.push("/");
         })
         .catch((error) => {
-          console.log(error.response);
+          console.log(error);
           this.errors = ["Invalid email or password."];
           this.email = "";
           this.password = "";
@@ -31,20 +31,25 @@ export default {
 
 <template>
   <div class="login">
-    <form v-on:submit.prevent="submit()">
-      <h1>Login</h1>
+    <div class="container mt-4">
       <ul>
         <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
       </ul>
-      <div>
-        <label>Email:</label>
-        <input type="email" v-model="newSessionParams.email" />
-      </div>
-      <div>
-        <label>Password:</label>
-        <input type="password" v-model="newSessionParams.password" />
-      </div>
-      <input type="submit" value="Submit" />
-    </form>
+      <form v-on:submit.prevent="submit()">
+        <div class="row mb-3">
+          <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+          <div class="col-sm-10">
+            <input type="email" class="form-control" id="inputEmail3" v-model="newSessionParams.email" />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+          <div class="col-sm-10">
+            <input type="password" class="form-control" id="inputPassword3" v-model="newSessionParams.password" />
+          </div>
+        </div>
+        <button class="btn btn-dark" type="submit" value="Submit">Login</button>
+      </form>
+    </div>
   </div>
 </template>

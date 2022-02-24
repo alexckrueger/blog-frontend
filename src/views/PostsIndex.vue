@@ -52,35 +52,44 @@ export default {
 
 <template>
   <div class="posts">
-    <button v-on:click="doNotClick()">{{ buttonText[buttonIndex] }}</button>
-    <div id="search">
-      <p>
-        Search:
-        <input type="text" v-model="nameFilter" list="postTitles" />
-      </p>
-      <datalist id="postTitles">
-        <option v-for="post in posts" v-bind:key="post.id">{{ post.title }}</option>
-      </datalist>
-    </div>
-    <transition-group
-      appear
-      enter-active-class="animate__animated animate__zoomInDown"
-      leave-active-class="animate__animated animate__zoomOutUp"
-    >
-      <div v-for="post in titleFilter()" v-bind:key="post.id">
-        <h2>{{ post.title }}</h2>
-        <small>Created {{ relativeTime(post.created_at) }}</small>
-        <br />
-        <router-link :to="`/posts/${post.id}`"><img :src="post.image" :alt="post.title" /></router-link>
+    <div class="container">
+      <button
+        v-on:click="doNotClick()"
+        type="button"
+        class="btn mt-2 btn-outline-danger p-2 position-relative top-0 start-50 translate-middle-x"
+      >
+        {{ buttonText[buttonIndex] }}
+      </button>
+
+      <div class="input-group mb-3 mt-3">
+        <input type="text" class="form-control" v-model="nameFilter" list="postTitles" />
+        <datalist id="postTitles">
+          <option v-for="post in posts" v-bind:key="post.id">{{ post.title }}</option>
+        </datalist>
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
       </div>
-    </transition-group>
+
+      <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+        <div v-for="post in titleFilter()" v-bind:key="post.id" class="card mb-3" style="max-width: 540px">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img :src="post.image" :alt="post.title" class="img-fluid rounded-start" />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title mb-2">{{ post.title }}</h5>
+                <p class="text-truncate">{{ post.body }}</p>
+                <router-link :to="`/posts/${post.id}`">
+                  <button type="button" class="btn btn-outline-dark mb-2">View Post</button>
+                </router-link>
+                <div class="card-footer">
+                  <small class="text-muted">Created {{ relativeTime(post.created_at) }}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
-
-<style>
-#search {
-  color: purple;
-  font-size: larger;
-  font-weight: bold;
-}
-</style>

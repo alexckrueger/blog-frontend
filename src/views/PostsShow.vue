@@ -27,12 +27,18 @@ export default {
 
 <template>
   <div class="posts-show">
-    <button @click="$router.go(-1)">Go Back</button>
-    <h2>{{ post.title }}</h2>
-    <small>Created {{ relativeTime(post.created_at) }}</small>
-    <br />
-    <img :src="post.image" :alt="post.title" />
-    <p>{{ post.body }}</p>
-    <router-link v-if="post.owner" :to="`/posts/${post.id}/edit`"><button>Edit Post</button></router-link>
+    <div class="container">
+      <button @click="$router.go(-1)" type="button" class="btn btn-secondary mt-2 mb-4">&lt;-- Go Back</button>
+      <div class="row">
+        <div class="col-3 w-auto"><img :src="post.image" :alt="post.title" /></div>
+        <div class="col">
+          <h2>{{ post.title }}</h2>
+          <p>{{ post.body }}</p>
+          <small class="card-footer">Created {{ relativeTime(post.created_at) }}</small>
+        </div>
+      </div>
+
+      <router-link v-if="post.owner" :to="`/posts/${post.id}/edit`"><button>Edit Post</button></router-link>
+    </div>
   </div>
 </template>

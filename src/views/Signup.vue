@@ -50,6 +50,41 @@ export default {
       </div>
       <input type="submit" value="Submit" />
     </form>
+
+    <div class="container mt-4">
+      <h2>Signup!</h2>
+      <ul>
+        <li id="red" v-for="error in errors" v-bind:key="error">{{ error }}</li>
+      </ul>
+      <form>
+        <div class="row mb-3">
+          <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+          <div class="col-sm-10">
+            <input type="email" class="form-control" id="inputEmail3" />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+          <div class="col-sm-10">
+            <input type="email" class="form-control" id="inputEmail3" />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+          <div class="col-sm-10">
+            <input type="password" class="form-control" id="inputPassword3" />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputPassword3" class="col-sm-2 col-form-label">Confirm Password</label>
+          <div class="col-sm-10">
+            <input type="password" class="form-control" id="inputPassword3" />
+          </div>
+        </div>
+
+        <button class="btn btn-dark" type="submit" value="Submit">Login</button>
+      </form>
+    </div>
   </div>
 </template>
 
